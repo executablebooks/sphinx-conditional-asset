@@ -54,7 +54,7 @@ def sphinx_build_factory(make_app, tmp_path):
     yield _func
 
 
-def test_build_book(sphinx_build_factory, file_regression):
+def test_conditional_all(sphinx_build_factory):
     """Test building the base book template and config."""
     sphinx_build = sphinx_build_factory("base")  # type: SphinxBuild
     sphinx_build.build(assert_pass=True)
