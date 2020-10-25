@@ -36,20 +36,15 @@ extensions = [
 
 ## Use
 
-This package attaches two methods to the instance of `sphinx.Application` that
-is provided by `setup(app)`:
+This package adds two new methods to the instance of `sphinx.Application` that
+is provided by `setup(app)`, `app.add_js_file_conditional` and `app.add_css_file_conditional`. They take the same arguments as [`app.add_js_file`](https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx.application.Sphinx.add_js_file) and [`app.add_css_file`](https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx.application.Sphinx.add_css_file), along with an additional `condition` argument.
 
-- `app.add_js_file_conditional` conditionally loads javascript files
-- `app.add_js_file_conditional` conditionally loads css files
-
-Each method takes the same arguments as `app.add_js_file` and `app.add_css_file`,
-with one exception: they take a `condition` argument that is a **function** that
-takes the same arguments as the [`html-page-context` Sphinx event](https://www.sphinx-doc.org/en/master/extdev/appapi.html#event-html-page-context).
+**The `condition` argument**: takes a **function** that accepts the same arguments as the [`html-page-context` Sphinx event](https://www.sphinx-doc.org/en/master/extdev/appapi.html#event-html-page-context).
 
 When each page is loaded, the function will be called with the `html-page-context`
 arguments. If it returns `True` then the asset *will* be loaded onto the page.
 
-## An example
+## Examples
 
 For example, let's say we only wanted to load `thebe` on pages that start with
 `thebe_`. To do so, we'd add this to our `setup(app)` function:
