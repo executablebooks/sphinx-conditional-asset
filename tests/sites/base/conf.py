@@ -28,22 +28,10 @@ def only_on_some_pages(app, pagename, templatename, context, doctree):
 
 
 def setup(app):
-    app.add_js_file_conditional(
-        "only_index.js",
-        only_with_bullet_list
-    )
+    app.add_js_file_conditional("only_index.js", only_with_bullet_list)
 
-    app.add_js_file_conditional(
-        "only_page.js",
-        only_on_some_pages
-    )
+    app.add_js_file_conditional("only_page.js", only_on_some_pages)
 
-    app.add_css_file_conditional(
-        "only_index.css",
-        only_with_bullet_list
-    )
+    app.add_css_file_conditional("only_index.css", only_with_bullet_list)
 
-    app.add_css_file_conditional(
-        "only_page.css",
-        only_on_some_pages
-    )
+    app.add_css_file_conditional("only_page.css", only_on_some_pages)

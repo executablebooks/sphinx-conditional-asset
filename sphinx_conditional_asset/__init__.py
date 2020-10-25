@@ -8,7 +8,9 @@ from collections.abc import Callable
 __version__ = "0.0.1"
 
 
-def add_js_file_conditional(self, filename: str, condition: [Callable, None], **kwargs) -> None:
+def add_js_file_conditional(
+    self, filename: str, condition: [Callable, None], **kwargs
+) -> None:
     """Conditionally add a js file if `condition` returns True for a page.
 
     Overrides the Sphinx `add_js_file` and adds an extra `condition` kwarg.
@@ -17,7 +19,9 @@ def add_js_file_conditional(self, filename: str, condition: [Callable, None], **
     self.config.conditional_script_files[filename] = condition
 
 
-def add_css_file_conditional(self, filename: str, condition: [Callable, None], **kwargs) -> None:
+def add_css_file_conditional(
+    self, filename: str, condition: [Callable, None], **kwargs
+) -> None:
     """Conditionally add a css file if `condition` returns True for a page.
 
     Overrides the Sphinx `add_css_file` and adds an extra `condition` kwarg.
@@ -30,7 +34,9 @@ def check_conditional_assets(app, pagename, templatename, context, doctree):
     """Loop through any conditional assets and exclude if needed."""
     for path, condition in app.config.conditional_script_files.items():
         if not condition(app, pagename, templatename, context, doctree):
-            context["script_files"] = [ii for ii in context["script_files"] if path not in ii]
+            context["script_files"] = [
+                ii for ii in context["script_files"] if path not in ii
+            ]
 
     for path, condition in app.config.conditional_css_files.items():
         if not condition(app, pagename, templatename, context, doctree):
